@@ -47,7 +47,7 @@ export class HomePage {
       this.textHtml = url
       
 
-      if(url.split('')[6] == '/' ){
+      if(url.split('')[0] == 'h' && url.split('')[1] == 't' && url.split('')[2] == 't' ){
         window.open(url, '_blank','location=yes')
       }
       
