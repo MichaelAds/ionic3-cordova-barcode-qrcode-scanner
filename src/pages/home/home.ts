@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,11 +14,12 @@ export class HomePage {
   products: any[] = [];
   selectedProduct: any;
   productFound:boolean = false;
+  textHtml: string;
 
-  constructor(public navCtrl: NavController,
+  constructor( public navCtrl: NavController,
     private barcodeScanner: BarcodeScanner,
     private toast: Toast,
-    public dataService: DataServiceProvider) {
+    public dataService: DataServiceProvider,) {
       this.dataService.getProducts()
         .subscribe((response)=> {
             this.products = response
@@ -35,19 +37,42 @@ export class HomePage {
       } else {
         this.selectedProduct = {};
         this.productFound = false;
-        this.toast.show('Product not found', '5000', 'center').subscribe(
+        this.toast.show('Product not found', '1000', 'center').subscribe(
           toast => {
             console.log(toast);
           }
         );
       }
+      let url = barcodeData.text
+      this.textHtml = url
+      
+
+      if(url.split('')[6] == '/' ){
+        window.open(url, '_blank','location=yes')
+      }
+      
+      
+      
     }, (err) => {
-      this.toast.show(err, '5000', 'center').subscribe(
+      this.toast.show(err, '1000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
       );
+    })
+    var promise = Promise.resolve().then(function(){
+      console.log('rejection');
+      throw new Error('Failed');
     });
+    promise['catch'](function(){console.log('caught')});
+
+    
+    
+
   }
+
+  
+    
+  
 
 }

@@ -10,14 +10,20 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class DataServiceProvider {
-
+  
   constructor(public http: Http) {
     console.log('Hello DataServiceProvider Provider');
+    var promise = Promise.resolve().then(function(){
+      console.log('rejection');
+      throw new Error('Failed');
+    });
+    promise['catch'](function(){console.log('caught')});
   }
 
   getProducts(){
     return this.http.get('assets/data/products.json')
       .map((response:Response)=>response.json());
   }
+  
 
 }

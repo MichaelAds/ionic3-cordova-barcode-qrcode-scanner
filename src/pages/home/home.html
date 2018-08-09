@@ -1,29 +1,37 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      ThrustHub
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <p>
-    Leitor de codigo de barras
-  </p>
-  <h1>
-    <button ion-button color="blue" full round (click)="scan()">Scanner</button>
-  </h1>
-
-  <ion-card *ngIf="productFound">
+ <ion-grid> 
+   <ion-row>
+      <ion-col col-8>
+          <p>
+            Leitor de codigo de barras
+          </p>
+      </ion-col>
+      <ion-col col-4>  
+        <ion-chip>
+          <ion-avatar>
+            <ion-icon name="md-qr-scanner"></ion-icon>
+          </ion-avatar>
+          <ion-label color="secondary" full round (click)="scan()">Scanner</ion-label>
+        </ion-chip>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+  <ion-card>
     <ion-card-header>
-      <h2>Price: $ {{selectedProduct.price}}</h2>
+      Navegação
     </ion-card-header>
     <ion-card-content>
-      <ul>
-        <li>{{selectedProduct.plu}}</li>
-        <li>{{selectedProduct.name}}</li>
-        <li>{{selectedProduct.desc}}</li>
-      </ul>
+      Abrir Strings de WebSite
+      <p>String capturada: {{textHtml}}</p>
     </ion-card-content>
   </ion-card>
+  
 </ion-content>
