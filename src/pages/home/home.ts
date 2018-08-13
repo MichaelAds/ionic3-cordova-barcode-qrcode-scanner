@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner} from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
@@ -19,21 +19,29 @@ export class HomePage {
   constructor( public navCtrl: NavController,
     private barcodeScanner: BarcodeScanner,
     private toast: Toast,
-    public dataService: DataServiceProvider,) {
+    public dataService: DataServiceProvider) {
       this.dataService.getProducts()
         .subscribe((response)=> {
             this.products = response
             console.log(this.products);
         });
+     
+        
+      
   }
 
   scan() {
     this.selectedProduct = {};
-    this.barcodeScanner.scan().then((barcodeData) => {
+   
+    this.barcodeScanner.scan({orientation: 'landscape'}).then((barcodeData) => {
+      
       this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
+      
       if(this.selectedProduct !== undefined) {
+        
         this.productFound = true;
         console.log(this.selectedProduct);
+        
       } else {
         this.selectedProduct = {};
         this.productFound = false;
@@ -43,33 +51,42 @@ export class HomePage {
           }
         );
       }
-      let url = barcodeData.text
-      this.textHtml = url
       
+      let url = barcodeData.text
 
       if(url.split('')[0] == 'h' && url.split('')[1] == 't' && url.split('')[2] == 't' ){
         window.open(url, '_blank','location=yes')
+      }else{
+        url.toString()
+        this.textHtml = url
       }
       
       
       
-    }, (err) => {
+    },
+    
+    (err) => {
       this.toast.show(err, '1000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
       );
-    })
+    }
+   )
+   
     var promise = Promise.resolve().then(function(){
       console.log('rejection');
       throw new Error('Failed');
     });
     promise['catch'](function(){console.log('caught')});
-
+    
     
     
 
   }
+  
+
+ 
 
   
     

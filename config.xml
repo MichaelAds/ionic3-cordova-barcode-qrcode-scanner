@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Ionic3Barcode</name>
-    <description>An Example of Ionic 3 Barcode or QRCode Scanner</description>
+    <name>TrustHub</name>
+    <description>Leitor QrCode test</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -98,5 +98,6 @@
     <allow-navigation href="http://10.174.12.200:8109" />
     <allow-navigation href="http://10.174.12.200:8110" />
     <allow-navigation href="http://10.174.12.200:8111" />
+    <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <engine name="android" spec="6.2.3" />
 </widget>

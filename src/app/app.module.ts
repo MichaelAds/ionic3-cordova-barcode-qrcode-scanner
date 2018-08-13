@@ -1,3 +1,4 @@
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -32,7 +33,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     Toast,
-    DataServiceProvider
+    DataServiceProvider,
+    ScreenOrientation
   ]
 })
 export class AppModule {}

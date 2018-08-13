@@ -1,5 +1,16 @@
 page-home {   
-    $toolbar-ios-title-text-color:
-        ()
+    .toolbar-background-md{
+        background-color:#47a652;
+    }
+    .toolbar-title{
+        color:#fff;
+    }
+    .card-header-md{
+        background-color:#a1deb3;
+        color:#fff
+    }
+    .card-content-md{
+        border: 1px solid #a1deb3
+    }
     
 }
